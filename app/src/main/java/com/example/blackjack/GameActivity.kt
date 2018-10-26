@@ -28,7 +28,6 @@ class GameActivity : AppCompatActivity() {
         cardList = map.getIDs(this)
         dealerCards = arrayListOf(dealerCard1, dealerCard2, dealerCard3, dealerCard4, dealerCard5)
         playerCards = arrayListOf(playerCard1, playerCard2, playerCard3, playerCard4, playerCard5)
-
         var dealerFirst = true
         val rand = Random()
         var r = 0
@@ -39,6 +38,7 @@ class GameActivity : AppCompatActivity() {
         var store = 0;
 
         //Deal the initial four playerCards to the dealer and player
+        //Provided by the AMAZING Taylor Herald
         for (i in 0 until 4) {
             r = rand.nextInt(cardList.size)
             id = cardList[r]
@@ -73,7 +73,7 @@ class GameActivity : AppCompatActivity() {
             cardList.remove(r)
         }
 
-        //When Player "Passes"
+        //When Player Clicks "PASS"
         passing.setOnClickListener {
             //Dealer "hits" only if total is less than 17
             while(dealer.getTotal(0) < 17) {
@@ -92,7 +92,7 @@ class GameActivity : AppCompatActivity() {
             showEndGameButtons()
         }
 
-        //When Player "Hits"
+        //When Player Clicks "HIT"
         hitting.setOnClickListener {
             r = rand.nextInt(cardList.size)
             id = cardList[r]
@@ -113,9 +113,11 @@ class GameActivity : AppCompatActivity() {
         newGame.setOnClickListener {
             restartGame()
         }
-
     }
 
+    /**
+     * Translates the card name (String a) into an int
+     */
     private fun findCardValue(a:String) : Int{
         when(a){
             //Clubs
@@ -178,6 +180,9 @@ class GameActivity : AppCompatActivity() {
         return 0
     }
 
+    /**
+     * Sets score.text to declare the winner of the round
+     */
     private fun declareWinner(){
         if(player.getTotal(0) == 21) score.text = "You Win!"
         else if(dealer.getTotal(0) == 21) score.text = "Dealer Wins!"
@@ -189,11 +194,17 @@ class GameActivity : AppCompatActivity() {
         else if(dealer.getTotal(0) > 21) score.text = "You Win!"
     }
 
+    /**
+     * Restarts the game, new round
+     */
     private fun restartGame(){
         finish()
         startActivity(intent)
     }
 
+    /**
+     * Hides all buttons but the "New Game?" button
+     */
     private fun showEndGameButtons(){
         newGame.visibility = View.VISIBLE
         buttons.visibility = View.INVISIBLE

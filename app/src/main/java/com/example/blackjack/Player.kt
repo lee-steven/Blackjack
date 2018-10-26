@@ -1,9 +1,11 @@
 package com.example.blackjack
 
+/**
+ * A "Player" class
+ */
 class Player {
-    var count = 0
-    var totalScore = 0
-    var arrayList = ArrayList<String>()
+    private var totalScore = 0
+    private var arrayList = ArrayList<String>()
 
     fun getTotal(b: Int): Int{
         totalScore = totalScore + b
