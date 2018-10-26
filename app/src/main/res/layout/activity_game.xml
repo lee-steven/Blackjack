@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/dealer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="25dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/dealerCard1"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/dealerCard2"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/dealerCard3"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/dealerCard4"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/dealerCard5"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/dealer"
+        app:layout_constraintBottom_toTopOf="@id/player"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="20dp"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:text="Score: 0"/>
+
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NEW GAME?"
+        app:layout_constraintTop_toBottomOf="@id/score"
+        app:layout_constraintBottom_toTopOf="@id/player"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="17dp"
+        android:textColor="@android:color/white"
+        android:background="#696969"
+        android:width="120dp"
+        android:visibility="invisible"
+       />
+
+    //PLAYER'S CARDS
+    <LinearLayout
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/buttons"
+        app:layout_constraintTop_toBottomOf="@id/score"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/playerCard1"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/playerCard2"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/playerCard3"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/playerCard4"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+
+        <ImageView
+            android:id="@+id/playerCard5"
+            android:layout_width="70dp"
+            android:layout_height="100dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/player"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/passing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PASS"
+            android:textSize="17dp"
+            android:textColor="@android:color/white"
+            android:background="#696969"
+            android:layout_marginRight="17dp"
+            android:width="150dp"
+            />
+
+        <Button
+            android:id="@+id/hitting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HIT"
+            android:textSize="17dp"
+            android:textColor="@android:color/white"
+            android:background="#696969"
+            android:layout_marginLeft="17dp"
+            android:width="150dp"
+
+            />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

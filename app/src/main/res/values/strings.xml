@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Blackjack</string>
+    <string name="intro_image">Intro Image</string>
+    <string name="blackjack">Blackjack</string>
+    <string name="pass">Pass</string>
+    <string name="hit">Hit</string>
+    <string name="textview">TextView</string>
+    <string name="new_game">New Game?</string>
+    <string name="player_card">player card</string>
+    <string name="dealer_card">dealer card</string>
+    <string name="busted">Busted!</string>
+    <string name="dealer_wins">Dealer Wins!</string>
+    <string name="you_win">You win!</string>
+</resources>
