@@ -9,14 +9,15 @@ import com.example.blackjack.R.drawable.back
 import kotlinx.android.synthetic.main.activity_game.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.content.Intent
 
 class GameActivity : AppCompatActivity() {
 
-    var dealerCards = ArrayList<ImageView>()
-    var playerCards = ArrayList<ImageView>()
-    var player = Player()
-    var dealer = Player()
-    var map = CardMapper()
+    private var dealerCards = ArrayList<ImageView>()
+    private var playerCards = ArrayList<ImageView>()
+    private var player = Player()
+    private var dealer = Player()
+    private var map = CardMapper()
     lateinit var cardList: ArrayList<Int>
 
 
@@ -35,6 +36,7 @@ class GameActivity : AppCompatActivity() {
         var index = 0
         var dealerIndex = 0;
         var dealerFirstCard = 0
+        var store = 0;
 
         //Deal the initial four playerCards to the dealer and player
         for (i in 0 until 4) {
@@ -59,11 +61,13 @@ class GameActivity : AppCompatActivity() {
 
                 if(index == 0){
                     //figuring out how to make first card back.png
-                    //val id = resources.getIdentifier("Blackjack2:drawable/back", null, null)
-                    dealerCards[index].setImageResource(id)
+                    dealerCards[index].setImageResource(R.drawable.back)
+                    store = id;
                 }
                 else dealerCards[index].setImageResource(id)
                 index++
+
+                //MIGHT HAVE TO FIX THIS
                 dealerIndex++
             }
             cardList.remove(r)
@@ -72,7 +76,7 @@ class GameActivity : AppCompatActivity() {
         //When Player "Passes"
         passing.setOnClickListener {
             //Dealer "hits" only if total is less than 17
-            if(dealer.getTotal(0) < 17) {
+            while(dealer.getTotal(0) < 17) {
                 r = rand.nextInt(cardList.size)
                 id = cardList[r]
                 val name = resources.getResourceEntryName(id)
@@ -80,9 +84,10 @@ class GameActivity : AppCompatActivity() {
                 dealer.addCard(name)
                 val cardValue = findCardValue(name)
                 dealer.getTotal(cardValue)
-                dealerCards[index].setImageResource(id)
-                index++
+                dealerCards[dealerIndex].setImageResource(id)
+                dealerIndex++
             }
+            dealerCards[0].setImageResource(store)
             declareWinner()
             showEndGameButtons()
         }
@@ -98,11 +103,20 @@ class GameActivity : AppCompatActivity() {
             score.text = "Score: " + player.getTotal(cardValue)
             playerCards[index].setImageResource(id)
             index++
+            if(player.getTotal(0) > 21){
+                score.text = "Busted!"
+                showEndGameButtons()
+            }
+        }
+
+        //"NewGame?" Button Clicked
+        newGame.setOnClickListener {
+            restartGame()
         }
 
     }
 
-    fun findCardValue(a:String) : Int{
+    private fun findCardValue(a:String) : Int{
         when(a){
             //Clubs
             "clubs10" -> return 10
@@ -164,21 +178,23 @@ class GameActivity : AppCompatActivity() {
         return 0
     }
 
-    fun declareWinner(){
+    private fun declareWinner(){
         if(player.getTotal(0) == 21) score.text = "You Win!"
         else if(dealer.getTotal(0) == 21) score.text = "Dealer Wins!"
         else if(player.getTotal(0) < 21 && player.getTotal(0) > dealer.getTotal(0)) score.text = "You Win!"
         else if(dealer.getTotal(0) < 21 && dealer.getTotal(0) > player.getTotal(0)) score.text = "Dealer Wins!"
+        else if(dealer.getTotal(0) == 21 && player.getTotal(0) == 21) score.text = "Dealer Wins!"
         else if(player.getTotal(0) == dealer.getTotal(0)) score.text = "Tie!"
         else if(player.getTotal(0) > 21) score.text = "Dealer Wins!"
-        else if(dealer.getTotal(0) > 21) score.text = "You Win"
+        else if(dealer.getTotal(0) > 21) score.text = "You Win!"
     }
 
-    fun restartGame(){
-
+    private fun restartGame(){
+        finish()
+        startActivity(intent)
     }
 
-    fun showEndGameButtons(){
+    private fun showEndGameButtons(){
         newGame.visibility = View.VISIBLE
         buttons.visibility = View.INVISIBLE
     }

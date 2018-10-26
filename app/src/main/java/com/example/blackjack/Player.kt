@@ -10,10 +10,6 @@ class Player {
         return totalScore
     }
 
-    fun bust(){
-
-    }
-
     fun addCard(a: String){
         arrayList.add(a)
     }
