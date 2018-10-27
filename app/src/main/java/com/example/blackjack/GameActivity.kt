@@ -70,7 +70,7 @@ class GameActivity : AppCompatActivity() {
                 //MIGHT HAVE TO FIX THIS
                 dealerIndex++
             }
-            cardList.remove(r)
+            cardList.remove(id)
         }
 
         //When Player Clicks "PASS"
@@ -80,7 +80,7 @@ class GameActivity : AppCompatActivity() {
                 r = rand.nextInt(cardList.size)
                 id = cardList[r]
                 val name = resources.getResourceEntryName(id)
-                cardList.remove(r)
+                cardList.remove(id)
                 dealer.addCard(name)
                 val cardValue = findCardValue(name)
                 dealer.getTotal(cardValue)
